@@ -12,7 +12,7 @@ public class Pack
     //Default constructor, set maxCount = 10, maxVolume = 20 and maxWeight = 30
     public Pack() : this(10, 20, 30){ }
 
-    //Parametrized constructor
+    //Parametrized constructor,but it is a good start
     public Pack(int maxCount, float maxVolume, float maxWeight)
     {
         _maxCount = maxCount;
