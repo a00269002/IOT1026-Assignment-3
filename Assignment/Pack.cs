@@ -1,13 +1,29 @@
 ﻿namespace Assignment;
 
-class Pack
+public class Pack
 {
     private InventoryItem[] _items; // You can use another data structure here if you prefer.
-    // You may need another private member variable if you use an array data structure.
+                                    // You may need another private member variable if you use an array data structure.
 
+    private int _maxCount;
+    private float _maxVolume;
+    private float _maxWeight;
+
+    //Default constructor, set maxCount = 10, maxVolume = 20 and maxWeight = 30
+    public Pack() : this(10, 20, 30){ }
+
+    //Parametrized constructor
     public Pack(int maxCount, float maxVolume, float maxWeight)
     {
-        throw new NotImplementedException();
+        _maxCount = maxCount;
+        _maxVolume = maxVolume;
+        _maxWeight = maxWeight;
+    }
+
+    //Getter
+    public int GetmaxCount()
+    {
+        return _maxCount;
     }
 
     public bool Add(InventoryItem item)
@@ -22,7 +38,7 @@ class Pack
     }
 }
 
-class InventoryItem
+public class InventoryItem
 {
     // Implement this class
 }
