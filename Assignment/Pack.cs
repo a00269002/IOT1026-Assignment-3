@@ -29,6 +29,7 @@ public class Pack
 
     public bool Add(InventoryItem item)
     {
+        float weight = item.GetWeight();// Validate if this is that we need to implement in this method
         throw new NotImplementedException();
     }
 
@@ -46,8 +47,23 @@ public class InventoryItem
 
     public InventoryItem(float volume, float weight)
     {
+        if (volume <= 0f || weight <= 0f)
+        {
+            throw new ArgumentOutOfRangeException($"An item cannot have {volume} volume or {weight} weight!");
+        }
         _volume = volume;
         _weight = weight;
+    }
+
+    //Getters
+    public float GetVolume()
+    {
+        return _volume;
+    }
+
+    public float GetWeight()
+    {
+        return _weight;
     }
 }
 
@@ -55,8 +71,14 @@ public class InventoryItem
 
 // Implement these classes - each inherits from InventoryItem
 // 1 line of code each - call base class constructor with appropriate arguments
-class Arrow : InventoryItem { }
-class Bow : InventoryItem { }
+class Arrow : InventoryItem
+{
+    public Arrow() : base(0.05f, 0.1f) { }
+}
+class Bow : InventoryItem
+{
+    public Bow() : base(1f, 4f) { }
+}
 class Rope : InventoryItem { }
 class Water : InventoryItem { }
 class Food : InventoryItem { }
