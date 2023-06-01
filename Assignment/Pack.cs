@@ -8,6 +8,7 @@ public class Pack
     private readonly int _maxCount;
     private readonly float _maxVolume;
     private readonly float _maxWeight;
+    private int _currentCount;
 
     //Default constructor, set maxCount = 10, maxVolume = 20 and maxWeight = 30
     public Pack() : this(10, 20, 30) { }
@@ -15,6 +16,7 @@ public class Pack
     //Parametrized constructor,but it is a good start
     public Pack(int maxCount, float maxVolume, float maxWeight)
     {
+        _items = new InventoryItem[maxCount];
         _maxCount = maxCount;
         _maxVolume = maxVolume;
         _maxWeight = maxWeight;
@@ -29,6 +31,7 @@ public class Pack
 
     public bool Add(InventoryItem item)
     {
+        //Verify that the incoming items 
         float weight = item.GetWeight();// Validate if this is that we need to implement in this method
         throw new NotImplementedException();
     }
@@ -71,9 +74,14 @@ public abstract class InventoryItem
 
 // Implement these classes - each inherits from InventoryItem
 // 1 line of code each - call base class constructor with appropriate arguments
-class Arrow : InventoryItem
+public class Arrow : InventoryItem
 {
     public Arrow() : base(0.05f, 0.1f) { }
+
+    public override string Display()
+    {
+        return $"An Arrow weight {GetWeight()} and volume {GetVolume()}";
+    }
 }
 class Bow : InventoryItem
 {

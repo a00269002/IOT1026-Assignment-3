@@ -13,8 +13,20 @@ namespace Assignment
             const int PackMaxItems = 10;
             const float PackMaxVolume = 20;
             const float PackMaxWeight = 30;
-            Pack pack = new(PackMaxItems, PackMaxVolume, PackMaxWeight);
-            PackTester.AddEquipment(pack);
+            //Pack pack = new(PackMaxItems, PackMaxVolume, PackMaxWeight);
+            //PackTester.AddEquipment(pack);
+            
+            List<InventoryItem> items = new List<InventoryItem>();
+
+            items.Add(new Arrow());
+            items.Add(new Rope());
+            items.Add(new Water());
+            items.Add(new Food());
+
+            foreach(var item in items)
+            {
+Console.WriteLine(item.Display());
+            }
         }
     }
 }
