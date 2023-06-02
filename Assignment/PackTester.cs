@@ -1,6 +1,6 @@
 ﻿namespace Assignment;
 
-static class PackTester
+public static class PackTester
 {
     public static void AddEquipment(Pack pack)
     {
