@@ -95,28 +95,17 @@ namespace AssignmentTest
 
         //Unit test for PackTester
         [TestMethod]
-        public void AddEquipment_AddValidItem_ItemAddedToPack()
+        public void TestAddEquipment()
         {
             // Arrange
-            Pack pack = new Pack(5, 10.5f, 8.4f);
-            string userInput = "1";
-            StringReader stringReader = new StringReader(userInput);
-            Console.SetIn(stringReader);
+            var pack = new Pack();
+            var initialPackCount = pack.GetMaxCount();
 
-            int choice = Convert.ToInt32(userInput);
+            // Act
+            PackTester.AddEquipment(pack);
 
-            InventoryItem newItem = choice switch
-            {
-                1 => new Arrow(),
-                2 => new Bow(),
-                3 => new Rope(),
-                4 => new Water(),
-                5 => new Food(),
-                6 => new Sword(),
-                _ => throw new ArgumentOutOfRangeException("Invalid input")
-            };
-            pack.Add(newItem);
+            // Assert
+            Assert.AreEqual(1, initialPackCount);
         }
-
     }
 }
