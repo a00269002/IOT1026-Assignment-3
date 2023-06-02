@@ -36,7 +36,6 @@ namespace AssignmentTest
             const float PackMaxWeight = 1;
 
             Pack pack = new(PackMaxItems, PackMaxVolume, PackMaxWeight);
-
             Assert.AreEqual(pack.Add(new Sword()), false);
         }
 
@@ -46,13 +45,26 @@ namespace AssignmentTest
             const int PackMaxItems = 10;
             const float PackMaxVolume = 20;
             const float PackMaxWeight = 30;
-            Pack pack = new(PackMaxItems, PackMaxVolume, PackMaxWeight);
-            InventoryItem item = new Arrow();
 
-            Assert.IsTrue(pack.Add(new Arrow()));
+            Pack pack = new(PackMaxItems, PackMaxVolume, PackMaxWeight);
+            Assert.AreEqual(pack.Add(new Arrow()), true);
             Assert.AreEqual(1, pack.GetItems().Count());
         }
 
-        
+        [TestMethod]
+        public void AddItemsExceedingConstraints()
+        {
+            const int PackMaxItems = 2;
+            const float PackMaxVolume = 20;
+            const float PackMaxWeight = 30;
+            Pack pack = new(PackMaxItems, PackMaxVolume, PackMaxWeight);
+            Pack pack2 = new(PackMaxItems, PackMaxVolume, PackMaxWeight);
+            Pack pack3 = new(PackMaxItems, PackMaxVolume, PackMaxWeight);
+
+            Assert.AreEqual(pack.Add(new Water()), true);
+            Assert.AreEqual(pack.Add(new Food()), true);
+            Assert.AreEqual(pack.Add(new Sword()), false);
+            Assert.AreEqual(2, pack.GetItems().Count());
+        }
     }
 }
