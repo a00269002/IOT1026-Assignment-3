@@ -32,7 +32,6 @@ static class PackTester
                     4 => new Water(),
                     5 => new Food(),
                     6 => new Sword(),
-                    _ => throw new ArgumentOutOfRangeException("Invalid input")
                 };
                 if (!pack.Add(newItem))
                 {
