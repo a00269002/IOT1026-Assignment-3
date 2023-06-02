@@ -27,6 +27,12 @@ public class Pack
     }
 
     // Getter
+    public List<InventoryItem> GetItems()
+    {
+        return _items;
+    }
+
+
     public float GetVolume()
     {
         return _currentVolume;
