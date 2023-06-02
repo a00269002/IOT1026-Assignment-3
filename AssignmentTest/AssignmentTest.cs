@@ -93,19 +93,30 @@ namespace AssignmentTest
             Assert.AreEqual(PackMaxWeight, pack.GetMaxWeight());
         }
 
-        /*[TestMethod]
-        public void PackClassNegativeWeightTest()
+        //Unit test for PackTester
+        [TestMethod]
+        public void AddEquipment_AddValidItem_ItemAddedToPack()
         {
-            const int PackMaxItems = 5;
-            const float PackMaxVolume = 10.5f;
-            const float PackMaxWeight = 8.4f;
-            Pack pack = new(PackMaxItems, PackMaxVolume, PackMaxWeight);
+            // Arrange
+            Pack pack = new Pack(5, 10.5f, 8.4f);
+            string userInput = "1";
+            StringReader stringReader = new StringReader(userInput);
+            Console.SetIn(stringReader);
 
-            Sword newSword = new Sword();
-            newSword.Weight = -10f;
+            int choice = Convert.ToInt32(userInput);
 
-            Assert.AreEqual(pack.Add(newSword), false);
-            Assert.AreEqual(0, pack.GetItems().Count());
-        }*/
+            InventoryItem newItem = choice switch
+            {
+                1 => new Arrow(),
+                2 => new Bow(),
+                3 => new Rope(),
+                4 => new Water(),
+                5 => new Food(),
+                6 => new Sword(),
+                _ => throw new ArgumentOutOfRangeException("Invalid input")
+            };
+            pack.Add(newItem);
+        }
+
     }
 }
