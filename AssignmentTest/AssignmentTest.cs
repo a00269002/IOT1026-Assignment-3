@@ -40,7 +40,7 @@ namespace AssignmentTest
         }
 
         [TestMethod]
-        public void AddSingleItemToEmptyPack()
+        public void AddSingleItemToEmptyPackTest()
         {
             const int PackMaxItems = 10;
             const float PackMaxVolume = 20;
@@ -52,19 +52,60 @@ namespace AssignmentTest
         }
 
         [TestMethod]
-        public void AddItemsExceedingConstraints()
+        public void AddItemsExceedingConstraintsTest()
         {
             const int PackMaxItems = 2;
             const float PackMaxVolume = 20;
             const float PackMaxWeight = 30;
             Pack pack = new(PackMaxItems, PackMaxVolume, PackMaxWeight);
-            Pack pack2 = new(PackMaxItems, PackMaxVolume, PackMaxWeight);
-            Pack pack3 = new(PackMaxItems, PackMaxVolume, PackMaxWeight);
 
             Assert.AreEqual(pack.Add(new Water()), true);
             Assert.AreEqual(pack.Add(new Food()), true);
             Assert.AreEqual(pack.Add(new Sword()), false);
             Assert.AreEqual(2, pack.GetItems().Count());
+        }
+
+        [TestMethod]
+        public void AddItemsExactConstraintsTest()
+        {
+            const int PackMaxItems = 4;
+            const float PackMaxVolume = 20;
+            const float PackMaxWeight = 30;
+            Pack pack = new(PackMaxItems, PackMaxVolume, PackMaxWeight);
+
+            Assert.AreEqual(pack.Add(new Water()), true);
+            Assert.AreEqual(pack.Add(new Food()), true);
+            Assert.AreEqual(pack.Add(new Sword()), true);
+            Assert.AreEqual(pack.Add(new Bow()), true);
+            Assert.AreEqual(4, pack.GetItems().Count());
+        }
+
+        [TestMethod]
+        public void PackClassNegativeValuesTest()
+        {
+            const int PackMaxItems = -3;
+            const float PackMaxVolume = -5;
+            const float PackMaxWeight = -10;
+            Pack pack = new(PackMaxItems, PackMaxVolume, PackMaxWeight);
+
+            Assert.AreEqual(PackMaxItems, pack.GetMaxCount());
+            Assert.AreEqual(PackMaxVolume, pack.GetMaxVolume());
+            Assert.AreEqual(PackMaxWeight, pack.GetMaxWeight());
+        }
+
+        [TestMethod]
+        public void PackClassNegativeWeightTest()
+        {
+            const int PackMaxItems = 5;
+            const float PackMaxVolume = 10.5f;
+            const float PackMaxWeight = 8.4f;
+            Pack pack = new(PackMaxItems, PackMaxVolume, PackMaxWeight);
+
+            Sword newSword = new Sword();
+            newSword.Weight = -10f;
+
+            Assert.AreEqual(pack.Add(newSword), false);
+            Assert.AreEqual(0, pack.GetItems().Count());
         }
     }
 }
