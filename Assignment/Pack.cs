@@ -62,6 +62,12 @@ public class Pack
     {
         float weight = item.GetWeight();
         float volume = item.GetVolume();
+
+        if (weight < 0 || volume < 0)
+        {
+            return false;
+        }
+
         if (_items.Count + 1 > GetMaxCount() || GetWeight() + weight > GetMaxWeight() || GetVolume() + volume > GetMaxVolume())
         {
             return false;
@@ -70,7 +76,6 @@ public class Pack
         _currentWeight += weight;
         _currentVolume += volume;
         return true;
-
     }
 
     public override string ToString()
@@ -114,9 +119,7 @@ public abstract class InventoryItem
 public class Arrow : InventoryItem
 {
     public Arrow() : base(0.05f, 0.1f) { }
-    public float Weight { get; set; }
 
-    public float Volume { get; set; }
     public override string Display()
     {
         return $"An arrow with weight {GetWeight()} and volume {GetVolume()}";
@@ -126,9 +129,7 @@ public class Arrow : InventoryItem
 public class Bow : InventoryItem
 {
     public Bow() : base(4f, 1f) { }
-    public float Weight { get; set; }
 
-    public float Volume { get; set; }
     public override string Display()
     {
         return $"A bow with weight {GetWeight()} and volume {GetVolume()}";
@@ -138,9 +139,7 @@ public class Bow : InventoryItem
 public class Rope : InventoryItem
 {
     public Rope() : base(1.5f, 1f) { }
-    public float Weight { get; set; }
 
-    public float Volume { get; set; }
     public override string Display()
     {
         return $"A rope with weight {GetWeight()} and volume {GetVolume()}";
@@ -150,9 +149,7 @@ public class Rope : InventoryItem
 public class Water : InventoryItem
 {
     public Water() : base(3f, 2f) { }
-    public float Weight { get; set; }
 
-    public float Volume { get; set; }
     public override string Display()
     {
         return $"Water with weight {GetWeight()} and volume {GetVolume()}";
@@ -162,9 +159,7 @@ public class Water : InventoryItem
 public class Food : InventoryItem
 {
     public Food() : base(0.5f, 1f) { }
-    public float Weight { get; set; }
 
-    public float Volume { get; set; }
     public override string Display()
     {
         return $"Yummy food with weight {GetWeight()} and volume {GetVolume()}";
