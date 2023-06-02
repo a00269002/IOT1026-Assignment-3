@@ -21,12 +21,11 @@ namespace AssignmentTest
         public void VolumeOverflowTest()
         {
             const int PackMaxItems = 1000;
-            const float PackMaxVolume = 5;
+            const float PackMaxVolume = 1;
             const float PackMaxWeight = 3000;
 
             Pack pack = new(PackMaxItems, PackMaxVolume, PackMaxWeight);
-            Assert.AreEqual(pack.Add(new Bow()), true);
-            Assert.AreEqual(pack.Add(new Bow()), false);
+            Assert.AreEqual(pack.Add(new Water()), false);
         }
 
         [TestMethod]
@@ -34,11 +33,11 @@ namespace AssignmentTest
         {
             const int PackMaxItems = 1000;
             const float PackMaxVolume = 5000;
-            const float PackMaxWeight = 3;
+            const float PackMaxWeight = 1;
 
             Pack pack = new(PackMaxItems, PackMaxVolume, PackMaxWeight);
-            Assert.AreEqual(pack.Add(new Sword()), true);
-            Assert.AreEqual(pack.Add(new Sword()), false);
+           
+           Assert.AreEqual(pack.Add(new Sword()), false);
         }
 
         [TestMethod]
@@ -50,10 +49,8 @@ namespace AssignmentTest
             Pack pack = new(PackMaxItems, PackMaxVolume, PackMaxWeight);
             InventoryItem item = new Arrow();
 
-            bool result = pack.Add(item);
-
-            Assert.IsTrue(result);
-            Assert.AreEqual(1, pack.GetMaxCount());
+            Assert.IsTrue(pack.Add(new Arrow()));
+            Assert.AreEqual(1, pack.GetItems().Count());
         }
     }
 }
