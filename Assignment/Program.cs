@@ -15,7 +15,7 @@ namespace Assignment
             Pack pack = new(PackMaxItems, PackMaxVolume, PackMaxWeight);
             PackTester.AddEquipment(pack);
 
-            /*
+
             List<InventoryItem> items = new List<InventoryItem>();
             items.Add(new Sword());
             items.Add(new Rope());
@@ -28,7 +28,7 @@ namespace Assignment
                 // Massive switch statement if we don't use inheritance/polymorphism
                 System.Console.WriteLine(item.Display());
             }
-            */
+
         }
     }
 }

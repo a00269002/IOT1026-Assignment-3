@@ -2,70 +2,76 @@
 
 public class Pack
 {
-    private readonly InventoryItem[] _items; // You can use another data structure here if you prefer.
-    // You may need another private member variable if you use an array data structure.
+    private readonly List<InventoryItem> items;
 
     private readonly int _maxCount;
     private readonly float _maxVolume;
     private readonly float _maxWeight;
-    private int _currentCount; // Defaults to 0
+    private int _currentCount;
     private float _currentVolume;
     private float _currentWeight;
 
 
-    // Default constructor sets the maxCount to 10 
+    // Default constructor sets the 
+    // maxCount to 10 
     // maxVolume to 20 
     // maxWeight to 30
     public Pack() : this(10, 20, 30) { }
 
-    // This constructor is not complete, but it is a good start.
+    // Paramtrized constructor
     public Pack(int maxCount, float maxVolume, float maxWeight)
     {
-        _items = new InventoryItem[maxCount];
+        items = new List<InventoryItem>();
         _maxCount = maxCount;
         _maxVolume = maxVolume;
         _maxWeight = maxWeight;
     }
 
-    // This is called a getter
-    public int GetMaxCount()
-    {
-        return _maxCount;
-    }
-
+    // Getter
     public float GetVolume()
     {
         return _currentVolume;
     }
 
+    public float GetWeight()
+    {
+        return _currentWeight;
+    }
+
+    public int GetMaxCount()
+    {
+        return _maxCount;
+    }
+
+    public float GetMaxVolume()
+    {
+        return _maxVolume;
+    }
+
+    public float GetMaxWeight()
+    {
+        return _maxWeight;
+    }
+
     public bool Add(InventoryItem item)
     {
-        // In the `Add` method, check if adding the item would exceed the pack's 
-        // maximum count, weight, or volume. If it would not exceed these limits, 
-        // add the item to the pack and return `true`. Otherwise, return `false`.
-
-        // Does the current item cause _currentCount to be > _maxCount ... same for vol. and weight
-        // if the new item will exceed these parameters, return false
-        // else add it to the _items array and return true.
-
-        // Do your logic to ensure the item can be added
         float weight = item.GetWeight();
         float volume = item.GetVolume();
-        if (volume <= _maxVolume)
+        if (items.Count + 1 > GetMaxCount() || GetWeight() + weight > GetMaxWeight() || GetVolume() + volume > GetMaxVolume())
         {
-            _currentWeight += weight;
-            _currentVolume += volume;
-            _items[_currentCount++] = item;
-            return true;
+            return false;
         }
-        return false;
+        items.Add(item);
+        _currentWeight += weight;
+        _currentVolume += volume;
+        return true;
 
     }
 
-    // Implement this class
     public override string ToString()
     {
-        throw new NotImplementedException();
+        string result = $"Pack is current at {items.Count}/{GetMaxCount()} items, {GetWeight()}/{GetMaxWeight()} weight, and {GetVolume()}/{GetMaxVolume()} volume.";
+        return result;
     }
 }
 
@@ -100,11 +106,9 @@ public abstract class InventoryItem
     }
 }
 
-// Implement these classes - each inherits from InventoryItem
-// 1 line of code each - call base class constructor with appropriate arguments
 public class Arrow : InventoryItem
 {
-    public Arrow() : base(0.5f, 0.1f) { }
+    public Arrow() : base(0.05f, 0.1f) { }
 
     public override string Display()
     {
@@ -114,7 +118,7 @@ public class Arrow : InventoryItem
 
 public class Bow : InventoryItem
 {
-    public Bow() : base(1f, 4f) { }
+    public Bow() : base(4f, 1f) { }
 
     public override string Display()
     {
@@ -124,7 +128,7 @@ public class Bow : InventoryItem
 
 public class Rope : InventoryItem
 {
-    public Rope() : base(1f, 1.5f) { }
+    public Rope() : base(1.5f, 1f) { }
 
     public override string Display()
     {
@@ -134,7 +138,7 @@ public class Rope : InventoryItem
 
 public class Water : InventoryItem
 {
-    public Water() : base(2f, 3f) { }
+    public Water() : base(3f, 2f) { }
 
     public override string Display()
     {
@@ -144,7 +148,7 @@ public class Water : InventoryItem
 
 public class Food : InventoryItem
 {
-    public Food() : base(1f, 0.5f) { }
+    public Food() : base(0.5f, 1f) { }
 
     public override string Display()
     {
@@ -154,7 +158,7 @@ public class Food : InventoryItem
 
 public class Sword : InventoryItem
 {
-    public Sword() : base(5f, 3f) { }
+    public Sword() : base(3f, 5f) { }
 
     public override string Display()
     {
