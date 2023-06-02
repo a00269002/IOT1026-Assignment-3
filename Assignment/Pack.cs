@@ -7,7 +7,6 @@ public class Pack
     private readonly int _maxCount;
     private readonly float _maxVolume;
     private readonly float _maxWeight;
-    private int _currentCount;
     private float _currentVolume;
     private float _currentWeight;
 
