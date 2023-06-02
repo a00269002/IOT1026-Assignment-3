@@ -2,7 +2,7 @@
 
 public class Pack
 {
-    private readonly List<InventoryItem> items;
+    private readonly List<InventoryItem> _items;
 
     private readonly int _maxCount;
     private readonly float _maxVolume;
@@ -21,7 +21,7 @@ public class Pack
     // Paramtrized constructor
     public Pack(int maxCount, float maxVolume, float maxWeight)
     {
-        items = new List<InventoryItem>();
+        _items = new List<InventoryItem>();
         _maxCount = maxCount;
         _maxVolume = maxVolume;
         _maxWeight = maxWeight;
