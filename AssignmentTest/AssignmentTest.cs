@@ -92,5 +92,16 @@ namespace AssignmentTest
             Assert.AreEqual(PackMaxVolume, pack.GetMaxVolume());
             Assert.AreEqual(PackMaxWeight, pack.GetMaxWeight());
         }
+
+        [TestMethod]
+        public void TestToString()
+        {
+            var pack = new Pack();
+            var expectedString = $"Pack is current at {pack.GetItems().Count}/{pack.GetMaxCount()} items, {pack.GetWeight()}/{pack.GetMaxWeight()} weight, and {pack.GetVolume()}/{pack.GetMaxVolume()} volume.";
+
+            var result = pack.ToString();
+
+            Assert.AreEqual(expectedString, result);
+        }
     }
 }
