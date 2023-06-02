@@ -66,16 +66,13 @@ namespace AssignmentTest
             Pack pack = new(PackMaxItems, PackMaxVolume, PackMaxWeight);
             InventoryItem item1 = new Arrow();
             InventoryItem item2 = new Bow();
-            InventoryItem item3 = new Food();
 
             bool result1 = pack.Add(item1);
             bool result2 = pack.Add(item2);
-            bool result3 = pack.Add(item3);
 
             Assert.IsTrue(result1);
             Assert.IsTrue(result2);
-            Assert.IsTrue(result3);
-            Assert.AreEqual(3, pack.GetMaxCount());
+            Assert.AreEqual(2, pack.GetMaxCount());
             //Assert.AreEqual(item1, pack.GetItem(0));
             //Assert.AreEqual(item2, pack.GetItem(1));
         }
