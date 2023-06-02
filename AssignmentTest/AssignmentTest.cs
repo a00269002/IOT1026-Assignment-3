@@ -36,8 +36,8 @@ namespace AssignmentTest
             const float PackMaxWeight = 1;
 
             Pack pack = new(PackMaxItems, PackMaxVolume, PackMaxWeight);
-           
-           Assert.AreEqual(pack.Add(new Sword()), false);
+
+            Assert.AreEqual(pack.Add(new Sword()), false);
         }
 
         [TestMethod]
@@ -52,5 +52,7 @@ namespace AssignmentTest
             Assert.IsTrue(pack.Add(new Arrow()));
             Assert.AreEqual(1, pack.GetItems().Count());
         }
+
+        
     }
 }
