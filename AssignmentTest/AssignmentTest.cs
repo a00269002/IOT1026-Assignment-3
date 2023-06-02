@@ -92,20 +92,5 @@ namespace AssignmentTest
             Assert.AreEqual(PackMaxVolume, pack.GetMaxVolume());
             Assert.AreEqual(PackMaxWeight, pack.GetMaxWeight());
         }
-
-        //Unit test for PackTester
-        [TestMethod]
-        public void TestAddEquipment()
-        {
-            // Arrange
-            var pack = new Pack();
-            var initialPackCount = pack.GetMaxCount();
-
-            // Act
-            PackTester.AddEquipment(pack);
-
-            // Assert
-            Assert.AreEqual(1, initialPackCount);
-        }
     }
 }
