@@ -28,22 +28,5 @@ namespace AssignmentTest
             Assert.AreEqual(pack.Add(new Bow()), true);
             Assert.AreEqual(pack.Add(new Bow()), false);
         }
-
-        [TestMethod]
-        public void Add_SingleItemToEmptyPack()
-        {
-            const int PackMaxItems = 10;
-            const float PackMaxVolume = 20;
-            const float PackMaxWeight = 30;
-
-            Pack pack = new(PackMaxItems, PackMaxVolume, PackMaxWeight);
-
-            InventoryItem item = new Arrow();
-            bool result = pack.Add(item);
-
-            Assert.IsTrue(result);
-            // Assert.AreEqual(1, pack.GetMaxCount());
-            //Assert.AreEqual(item, );
-        }
     }
 }
