@@ -57,11 +57,11 @@ public class Pack
     {
         float weight = item.GetWeight();
         float volume = item.GetVolume();
-        if (items.Count + 1 > GetMaxCount() || GetWeight() + weight > GetMaxWeight() || GetVolume() + volume > GetMaxVolume())
+        if (_items.Count + 1 > GetMaxCount() || GetWeight() + weight > GetMaxWeight() || GetVolume() + volume > GetMaxVolume())
         {
             return false;
         }
-        items.Add(item);
+        _items.Add(item);
         _currentWeight += weight;
         _currentVolume += volume;
         return true;
@@ -70,7 +70,7 @@ public class Pack
 
     public override string ToString()
     {
-        string result = $"Pack is current at {items.Count}/{GetMaxCount()} items, {GetWeight()}/{GetMaxWeight()} weight, and {GetVolume()}/{GetMaxVolume()} volume.";
+        string result = $"Pack is current at {_items.Count}/{GetMaxCount()} items, {GetWeight()}/{GetMaxWeight()} weight, and {GetVolume()}/{GetMaxVolume()} volume.";
         return result;
     }
 }
