@@ -12,7 +12,7 @@
 </p>
 
 # IOT1026-Assignment-3
-Write a description of the project here and don't forget to update the badges.  
+This project is a tool for inventory where the user may combine several packages and specify the maximum volume, weight, and quantity. This tool ensures that the restrictions are upheld and that only the packages that fall within the parameters are included to the final packed.   
 
 [Assignment Instructions](docs/instructions.md)  
 [How to start coding](docs/how-to-use.md)  
