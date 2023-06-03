@@ -103,5 +103,18 @@ namespace AssignmentTest
 
             Assert.AreEqual(expectedString, result);
         }
+
+        [TestMethod]
+    public void Food_Display_ReturnsExpectedString()
+    {
+        // Arrange
+        Food food = new Food();
+
+        // Act
+        string result = food.Display();
+
+        // Assert
+        Assert.AreEqual("Yummy food with weight 0.5 and volume 1", result);
+    }
     }
 }
