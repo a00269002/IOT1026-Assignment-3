@@ -103,5 +103,28 @@ namespace AssignmentTest
 
             Assert.AreEqual(expectedString, result);
         }
+
+        [TestMethod]
+        public void TestPack()
+        {
+            const int PackMaxItems = 10;
+            const float PackMaxVolume = 20;
+            const float PackMaxWeight = 30;
+            Pack pack = new(PackMaxItems, PackMaxVolume, PackMaxWeight);
+            PackTester.AddEquipment(pack);
+
+            List<InventoryItem> items = new List<InventoryItem>();
+            items.Add(new Sword());
+            items.Add(new Rope());
+            items.Add(new Water());
+            items.Add(new Food());
+            items.Add(new Bow());
+            items.Add(new Arrow());
+
+            foreach (var item in items)
+            {
+                Assert.AreEqual(item.Display(), pack.GetItems());
+            }
+        }
     }
 }
