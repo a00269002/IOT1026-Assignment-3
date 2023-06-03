@@ -32,7 +32,6 @@ public class Pack
         return _items;
     }
 
-
     public float GetVolume()
     {
         return _currentVolume;
@@ -58,6 +57,11 @@ public class Pack
         return _maxWeight;
     }
 
+    /// <summary>
+    /// Adds an inventory item to the pack.
+    /// </summary>
+    /// <param name="item">The inventory item to add.</param>
+    /// <returns><c>true</c> if the item was successfully added; otherwise, <c>false</c>.</returns>
     public bool Add(InventoryItem item)
     {
         float weight = item.GetWeight();
@@ -78,6 +82,10 @@ public class Pack
         return true;
     }
 
+    /// <summary>
+    /// Returns a string representation of the pack.
+    /// </summary>
+    /// <returns>A string representation of the pack indicating the current item count, weight, and volume.</returns>
     public override string ToString()
     {
         string result = $"Pack is current at {_items.Count}/{GetMaxCount()} items, {GetWeight()}/{GetMaxWeight()} weight, and {GetVolume()}/{GetMaxVolume()} volume.";
@@ -91,6 +99,14 @@ public abstract class InventoryItem
     private readonly float _volume;
     private readonly float _weight;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="InventoryItem"/> class with the specified volume and weight.
+    /// </summary>
+    /// <param name="volume">The volume of the item.</param>
+    /// <param name="weight">The weight of the item.</param>
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// Thrown when the volume or weight is less than or equal to zero.
+    /// </exception>
     protected InventoryItem(float volume, float weight)
     {
         if (volume <= 0f || weight <= 0f)
@@ -116,63 +132,119 @@ public abstract class InventoryItem
     }
 }
 
+/// <summary>
+/// Represents an arrow.
+/// </summary>
 public class Arrow : InventoryItem
 {
+    // <summary>
+    /// Initializes a new instance of the <see cref="Arrow"/> class.
+    /// </summary>
     public Arrow() : base(0.05f, 0.1f) { }
 
+    /// <summary>
+    /// Displays information about the arrow.
+    /// </summary>
+    /// <returns>A string representation of the arrow.</returns>
     public override string Display()
     {
         return $"An arrow with weight {GetWeight()} and volume {GetVolume()}";
     }
 }
 
+/// <summary>
+/// Represents a bow.
+/// </summary>
 public class Bow : InventoryItem
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Bow"/> class.
+    /// </summary>
     public Bow() : base(4f, 1f) { }
 
+    /// <summary>
+    /// Displays information about the bow.
+    /// </summary>
+    /// <returns>A string representation of the bow.</returns>
     public override string Display()
     {
         return $"A bow with weight {GetWeight()} and volume {GetVolume()}";
     }
 }
 
+/// <summary>
+/// Represents a rope.
+/// </summary>
 public class Rope : InventoryItem
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Rope"/> class.
+    /// </summary>
     public Rope() : base(1.5f, 1f) { }
 
+    /// <summary>
+    /// Displays information about the rope.
+    /// </summary>
+    /// <returns>A string representation of the rope.</returns>
     public override string Display()
     {
         return $"A rope with weight {GetWeight()} and volume {GetVolume()}";
     }
 }
 
+/// <summary>
+/// Represents water.
+/// </summary>
 public class Water : InventoryItem
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Water"/> class.
+    /// </summary>
     public Water() : base(3f, 2f) { }
 
+    /// <summary>
+    /// Displays information about the water.
+    /// </summary>
+    /// <returns>A string representation of the water.</returns>
     public override string Display()
     {
         return $"Water with weight {GetWeight()} and volume {GetVolume()}";
     }
 }
 
+/// <summary>
+/// Represents food.
+/// </summary>
 public class Food : InventoryItem
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Food"/> class.
+    /// </summary>
     public Food() : base(0.5f, 1f) { }
 
+    /// <summary>
+    /// Displays information about the food.
+    /// </summary>
+    /// <returns>A string representation of the food.</returns>
     public override string Display()
     {
         return $"Yummy food with weight {GetWeight()} and volume {GetVolume()}";
     }
 }
 
+/// <summary>
+/// Represents a sword.
+/// </summary>
 public class Sword : InventoryItem
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Sword"/> class.
+    /// </summary>
     public Sword() : base(3f, 5f) { }
 
-    public float Weight { get; set; }
-
-    public float Volume { get; set; }
+    // <summary>
+    /// Gets or sets the volume of the sword.
+    /// </summary>
     public override string Display()
     {
         return $"A sharp sword with weight {GetWeight()} and volume {GetVolume()}";
